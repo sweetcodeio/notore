@@ -42,10 +42,10 @@ MIT © [SweetCode](https://github.com/sweetcodeio)
 [npm-badge]: https://img.shields.io/npm/v/@notore/core?color=23cf39
 [npm-url]: https://www.npmjs.com/package/@notore/core
 
-[codacy-badge]: https://img.shields.io/codacy/grade/bfc1b8e17e094bfe8f5f53e839f4f5ef?color=23cf39
+[codacy-badge]: https://img.shields.io/codacy/grade/69ce51279396420fa358513fe630f66c?color=23cf39&label=Codacy
 [codacy-url]: https://www.codacy.com/gh/sweetcodeio/notore?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sweetcodeio/notore&amp;utm_campaign=Badge_Grade
 
-[codefactor-badge]: https://img.shields.io/codefactor/grade/github/sweetcodeio/notore?color=23cf39
+[codefactor-badge]: https://img.shields.io/codefactor/grade/github/sweetcodeio/notore?color=23cf39&label=CodeFactor
 [codefactor-url]: https://www.codefactor.io/repository/github/sweetcodeio/notore
 
 [coveralls-badge]: https://img.shields.io/coveralls/github/sweetcodeio/notore?color=23cf39
