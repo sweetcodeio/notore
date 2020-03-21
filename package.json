@@ -1,0 +1,44 @@
+{
+  "name": "notore",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "test": "jest",
+    "prebuild": "lerna exec --parallel -- rimraf dist typings",
+    "build": "lerna exec --parallel -- rollup -c ../../rollup.config.js",
+    "lint": "eslint packages --ext .js,.ts",
+    "lint:fix": "eslint packages --ext .js,.ts --fix",
+    "prettier": "prettier --check packages/**/*.{js,ts}",
+    "prettier:fix": "prettier --write packages/**/*.{js,ts}"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-import-helpers": "^1.0.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.1.0",
+    "lerna": "^3.20.2",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.26.0",
+    "rollup-plugin-url": "^3.0.1",
+    "ts-jest": "^25.2.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.8.3"
+  }
+}

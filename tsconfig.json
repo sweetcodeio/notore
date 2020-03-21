@@ -1,0 +1,31 @@
+{
+  "exclude": ["node_modules", "packages/**/__tests__"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es6",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ES6", "ES2016", "ES2017"],
+    "strict": true,
+    "noEmit": true,
+    "allowJs": false,
+    "sourceMap": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noImplicitThis": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@notore/*": ["packages/*/lib"]
+    }
+  }
+}

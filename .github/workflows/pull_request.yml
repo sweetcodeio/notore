@@ -1,0 +1,18 @@
+name: PR
+
+on: [pull_request]
+
+jobs:
+  view:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Check commit message
+        uses: wagoid/commitlint-github-action@v1
