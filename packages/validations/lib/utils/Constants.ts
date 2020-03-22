@@ -10,5 +10,3 @@ export const REGEX = {
     error: (t: string) => `${t} must be alphanumeric`,
   }),
 };
-
-// function transformError()
