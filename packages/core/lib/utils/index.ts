@@ -7,5 +7,5 @@ export function parseError(error: string, options?: IValidField): string {
     if (options.complete) return ERRORS.complete(error);
   }
 
-  return error || '';
+  return error;
 }
