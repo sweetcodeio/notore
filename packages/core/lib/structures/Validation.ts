@@ -1,5 +1,6 @@
 import { TValidateOptions, IValidateTemplate, IValidField } from '../types';
 
+import { parseError } from '../utils';
 import Failure from './Failure';
 import Parse from './Parse';
 import Success from './Success';
@@ -27,12 +28,10 @@ abstract class NotoreValidation {
   }
 
   validate(schema: any): IValidateTemplate<Failure, Success> {
-    const { error, fields } = this.handleValidation(schema);
+    const { fields, error } = this.handleValidation(schema);
 
     return this.createResponse(
-      error
-        ? new Failure(error, fields && new Parse(fields))
-        : new Success(schema),
+      error ? new Failure(error, fields) : new Success(schema),
     );
   }
 
@@ -70,16 +69,24 @@ abstract class NotoreValidation {
     }
 
     const response = this.isValid(schema, options || {});
-    return response || {};
+    if (response && response.error) {
+      const { error, fields, ...rest } = response;
+      const parsedFields = fields?.map(field => new Parse(field));
+
+      return {
+        fields: parsedFields || [],
+        error: parseError(error, Object.assign(rest, options)),
+      };
+    }
+
+    return { options };
   }
 
   private createResponse(
     response: Failure | Success,
   ): IValidateTemplate<Failure, Success> {
-    const error = response instanceof Failure && response;
-    const value = !error && response instanceof Success && response;
-
-    return { error, value };
+    if (response instanceof Failure) return { error: response };
+    return { value: response };
   }
 }
 
