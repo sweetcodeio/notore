@@ -5,7 +5,15 @@
     "target": "es6",
     "module": "ESNext",
     "moduleResolution": "node",
-    "lib": ["ESNext", "DOM", "DOM.Iterable", "ES6", "ES2016", "ES2017"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable",
+      "ES6",
+      "ES2016",
+      "ES2017",
+      "ES2020"
+    ],
     "strict": true,
     "noEmit": true,
     "allowJs": false,
