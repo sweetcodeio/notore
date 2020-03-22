@@ -1,4 +1,4 @@
-import { Validation, IValidField } from '@notore/core';
+import { Validation, IValidField, TValidateOptions } from '@notore/core';
 
 interface IViewValidationArgs {
   value: any;
@@ -15,25 +15,28 @@ class ObjectValidation extends Validation {
     super('object');
   }
 
-  protected isValid(object: object): IValidField | void {
+  protected isValid(
+    object: object,
+    { key }: TValidateOptions,
+  ): IValidField | void {
     if (!(object instanceof Object)) {
-      const error = 'The validation entered is not an object';
-      return { error };
+      const error = 'object';
+      return { error, complete: true };
     }
 
     const shape = this._shapeConfig;
     if (shape) {
       const fields = Object.entries(shape)
         .map(
-          ([key, validation]): IValidField => {
-            const value = object[key];
+          ([objKey, validation]): IValidField => {
+            const value = object[objKey];
             return validation.generateValidation<IViewValidationArgs>(value, {
               value,
-              key,
+              key: (key && `${key}.${objKey}`) || objKey,
             });
           },
         )
-        .filter(validators => validators.error);
+        .filter(validator => validator.error);
 
       if (fields.length) {
         const { error } = fields[0];

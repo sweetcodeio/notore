@@ -1,4 +1,4 @@
-import { Validation, TValidateOptions, IValidField } from '@notore/core';
+import { Validation, IValidField, TValidateOptions } from '@notore/core';
 
 import { REGEX } from '../utils/Constants';
 
@@ -14,8 +14,8 @@ class StringValidation extends Validation {
     { key }: TValidateOptions,
   ): IValidField | void {
     if (typeof string !== 'string') {
-      const error = 'The validation entered is not an string';
-      return { error };
+      const error = 'string';
+      return { error, complete: true };
     }
 
     const { reviews } = this;
@@ -29,7 +29,6 @@ class StringValidation extends Validation {
         return {
           error,
           fields: fields.map(field => ({
-            ...field,
             error: field.error(displayName),
           })),
         };

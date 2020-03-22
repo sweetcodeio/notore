@@ -7,9 +7,8 @@ class BooleanValidation extends Validation {
 
   protected isValid(boolean: boolean): IValidField | void {
     if (typeof boolean !== 'boolean') {
-      return {
-        error: 'The validation entered is not an boolean',
-      };
+      const error = 'boolean';
+      return { error, complete: true };
     }
   }
 }

@@ -7,9 +7,8 @@ class NumberValidation extends Validation {
 
   protected isValid(number: number): IValidField | void {
     if (typeof number !== 'number') {
-      return {
-        error: 'The validation entered is not an number',
-      };
+      const error = 'number';
+      return { error, complete: true };
     }
   }
 }

@@ -9,8 +9,8 @@ class ArrayValidation extends Validation {
 
   protected isValid(array: any[]): IValidField | void {
     if (!(array instanceof Array)) {
-      const error = 'The validation entered is not an array';
-      return { error };
+      const error = 'array';
+      return { error, complete: true };
     }
 
     const validations = this._validations;
