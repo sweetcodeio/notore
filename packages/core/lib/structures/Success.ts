@@ -1,8 +1,8 @@
 class NotoreValidationSuccess {
-  public value: any;
+  public schema: any;
 
   constructor(schema: any) {
-    this.value = schema;
+    this.schema = schema;
   }
 }
 

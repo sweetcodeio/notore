@@ -1,9 +1,9 @@
 import { IValidField } from '../types';
 
-class NotoreParseFields extends Array<IValidField> {
-  constructor(fields: IValidField[]) {
-    super(...fields);
+class NotoreParsedField {
+  constructor(field: IValidField) {
+    Object.assign(this, field);
   }
 }
 
-export default NotoreParseFields;
+export default NotoreParsedField;

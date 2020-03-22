@@ -1,12 +1,12 @@
-import ParsedFields from './Parse';
+import Parse from './Parse';
 
 class NotoreValidationFailure {
   message: string;
 
-  fields?: ParsedFields;
+  fields?: Parse[];
 
-  constructor(message: string, fields?: ParsedFields) {
-    this.message = message;
+  constructor(error: string | string, fields?: Parse[]) {
+    this.message = error;
     this.fields = fields || [];
   }
 }
