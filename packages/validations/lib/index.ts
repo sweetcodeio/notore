@@ -1,5 +1,6 @@
 import ArrayValidation from './types/Array';
 import Booleanvalidation from './types/Boolean';
+import FunctionValidation from './types/Function';
 import NumberValidation from './types/Number';
 import ObjectValidation from './types/Object';
 import StringValidation from './types/String';
@@ -23,6 +24,10 @@ class NotoreValidations {
 
   array(): ArrayValidation {
     return new ArrayValidation();
+  }
+
+  function(): FunctionValidation {
+    return new FunctionValidation();
   }
 }
 
