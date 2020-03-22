@@ -1,6 +1,6 @@
 export interface IValidateTemplate<Failure, Success> {
-  error?: Failure | false;
-  value?: Success | false;
+  error?: Failure;
+  value?: Success;
 }
 
 export type TValidateOptions<T = {}> = T & {
@@ -9,8 +9,10 @@ export type TValidateOptions<T = {}> = T & {
 };
 
 export interface IValidField {
+  options?: TValidateOptions;
+  complete?: boolean;
   error?: string;
-  fields?: object[];
+  fields?: IValidField[];
 }
 
 export interface IParsedFields {
