@@ -39,7 +39,6 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     'prettier/prettier': 'error',
-    'no-console': 'off',
     'consistent-return': 'off',
     'class-methods-use-this': 'off',
     'no-param-reassign': 'off',
