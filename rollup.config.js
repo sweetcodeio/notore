@@ -14,7 +14,7 @@ function makeExternalPredicate(externalArr) {
     return () => false;
   }
   const pattern = new RegExp(`^(${externalArr.join('|')})($|/)`);
-  return id => pattern.test(id);
+  return (id) => pattern.test(id);
 }
 
 function getExternal() {

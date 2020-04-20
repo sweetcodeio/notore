@@ -20,9 +20,7 @@ describe('String', () => {
 
     describe('Email', () => {
       it('the value entered will not be validated, as it is not a valid email', () => {
-        const { error } = NotoreValidations.string()
-          .email()
-          .validate('String');
+        const { error } = NotoreValidations.string().email().validate('String');
 
         expect(error instanceof Failure).toBe(true);
       });

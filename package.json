@@ -1,21 +1,21 @@
 {
   "name": "notore",
-  "private": true,
   "version": "1.0.0",
   "license": "MIT",
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "private": true,
   "scripts": {
     "test": "jest",
     "prebuild": "lerna exec --parallel -- rimraf dist typings",
     "build": "lerna exec --parallel -- rollup -c ../../rollup.config.js",
-    "lint": "eslint packages --ext .js,.ts",
-    "lint:fix": "eslint packages --ext .js,.ts --fix",
+    "lint": "eslint packages --ext js,ts",
+    "lint:fix": "eslint packages --ext js,ts --fix",
     "prettier": "prettier --check packages/**/*.{js,ts}",
     "prettier:fix": "prettier --write packages/**/*.{js,ts}"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
@@ -28,8 +28,10 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-import-helpers": "^1.0.2",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.5",
     "jest": "^25.1.0",
     "lerna": "^3.20.2",
+    "lint-staged": "^10.1.6",
     "prettier": "^2.0.1",
     "rimraf": "^3.0.2",
     "rollup-plugin-babel": "^4.4.0",

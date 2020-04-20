@@ -20,7 +20,7 @@ class StringValidation extends Validation {
 
     const { reviews } = this;
     if (reviews.length) {
-      const fields = reviews.filter(review => !review.regex.test(string));
+      const fields = reviews.filter((review) => !review.regex.test(string));
 
       if (fields.length) {
         const displayName = (key && `${key} (${this.name})`) || this.name;
@@ -28,7 +28,7 @@ class StringValidation extends Validation {
 
         return {
           error,
-          fields: fields.map(field => ({
+          fields: fields.map((field) => ({
             error: field.error(displayName),
           })),
         };
@@ -36,7 +36,7 @@ class StringValidation extends Validation {
     }
 
     if (this._values) {
-      const hasValue = this._values.some(v => v === string);
+      const hasValue = this._values.some((v) => v === string);
 
       if (!hasValue) {
         const error =

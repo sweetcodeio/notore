@@ -17,11 +17,14 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: Check Tests
-        run: yarn test --coverage
+      - name: Check Prettier
+        run: yarn prettier
 
       - name: Check Linting
         run: yarn lint
+
+      - name: Check Tests
+        run: yarn test --coverage
 
       - name: Coveralls
         uses: coverallsapp/github-action@master

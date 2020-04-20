@@ -18,8 +18,8 @@ class ArrayValidation extends Validation {
       const fields: IValidField[] = array.reduce(
         (reduceArray: any[], current, index) => {
           const response = validations
-            .map(validation => validation.generateValidation(current))
-            .filter(validation => validation.error)
+            .map((validation) => validation.generateValidation(current))
+            .filter((validation) => validation.error)
             .find(
               (element, _, responseArray) =>
                 element.error && responseArray.length === validations.length,

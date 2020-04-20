@@ -16,14 +16,22 @@
     "lib": "lib",
     "test": "__tests__"
   },
-  "homepage": "https://github.com/sweetcodeio/notore#readme",
+  "author": "Pablo Vinícius <dev.pablo.vinicius@gmail.com>",
+  "homepage": "https://github.com/pablo1v/notore#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sweetcodeio/notore.git"
+    "url": "git+https://github.com/pablo1v/notore.git"
   },
   "bugs": {
-    "url": "https://github.com/sweetcodeio/notore/issues"
+    "url": "https://github.com/pablo1v/notore.git/issues"
   },
+  "keywords": [
+    "notore",
+    "node",
+    "tools",
+    "validation",
+    "typescript"
+  ],
   "peerDependencies": {
     "@notore/core": "*"
   }
