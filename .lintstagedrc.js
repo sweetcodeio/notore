@@ -1,5 +1,5 @@
 module.exports = {
-  'src/**/*.js': [
+  'packages/**/*.{js,ts}': [
     'yarn prettier',
     'yarn lint:fix',
     'yarn test --findRelatedTests',
