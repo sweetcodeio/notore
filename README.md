@@ -37,7 +37,7 @@ $ npm install @notore/validations
 
 ## License
 
-MIT ©
+AGPL-3.0 ©
 
 [npm-badge]: https://img.shields.io/npm/v/@notore/core?color=23cf39
 [npm-url]: https://www.npmjs.com/package/@notore/core
