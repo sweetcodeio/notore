@@ -71,7 +71,7 @@ abstract class NotoreValidation {
     const response = this.isValid(schema, options || {});
     if (response && response.error) {
       const { error, fields, ...rest } = response;
-      const parsedFields = fields?.map((field) => new Parse(field));
+      const parsedFields = fields?.map(field => new Parse(field));
 
       return {
         fields: parsedFields || [],

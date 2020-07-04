@@ -1,7 +1,7 @@
 export const REGEX = {
   EMAIL: {
     name: 'email',
-    regex: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+([a-z]{2,10})$/,
+    regex: /^[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]+([a-z]{2,10})$/,
     error: (t: string) => `${t} needs to be an email`,
   },
   ALPHA_NUMERIC: (force: boolean) => ({
