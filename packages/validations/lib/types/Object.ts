@@ -36,7 +36,7 @@ class ObjectValidation extends Validation {
             });
           },
         )
-        .filter((validator) => validator.error);
+        .filter(validator => validator.error);
 
       if (fields.length) {
         const { error } = fields[0];
