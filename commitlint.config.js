@@ -13,6 +13,7 @@ module.exports = {
       2,
       'always',
       [
+        'update',
         'chore',
         'build',
         'ci',

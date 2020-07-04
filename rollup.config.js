@@ -1,20 +1,17 @@
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import url from '@rollup/plugin-url';
 import path from 'path';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
-import url from 'rollup-plugin-url';
 
 const PACKAGE_ROOT_PATH = process.cwd();
 const INPUT_FILE = path.join(PACKAGE_ROOT_PATH, 'lib/index.ts');
 const pkg = require(path.join(PACKAGE_ROOT_PATH, 'package.json'));
 
 function makeExternalPredicate(externalArr) {
-  if (!externalArr.length) {
-    return () => false;
-  }
-  const pattern = new RegExp(`^(${externalArr.join('|')})($|/)`);
-  return (id) => pattern.test(id);
+  if (!externalArr.length) return () => false;
+  return id => new RegExp(`^(${externalArr.join('|')})($|/)`).test(id);
 }
 
 function getExternal() {
@@ -43,20 +40,18 @@ export default {
     url(),
     resolve(),
     commonjs(),
-    babel({
-      exclude: 'node_modules/**',
-    }),
+    babel({ exclude: 'node_modules/**' }),
     typescript({
-      tsconfigOverride: {
-        compilerOptions: {
-          declarationDir: path.resolve(PACKAGE_ROOT_PATH, './typings'),
-          declarationMap: true,
-        },
-        include: [path.resolve(PACKAGE_ROOT_PATH, './lib/**/*')],
-      },
       rollupCommonJSResolveHack: true,
       useTsconfigDeclarationDir: true,
       objectHashIgnoreUnknownHack: true,
+      tsconfigOverride: {
+        include: [path.resolve(PACKAGE_ROOT_PATH, './lib/**/*')],
+        compilerOptions: {
+          declarationMap: true,
+          declarationDir: path.resolve(PACKAGE_ROOT_PATH, './typings'),
+        },
+      },
     }),
   ],
 };
