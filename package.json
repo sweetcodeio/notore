@@ -19,6 +19,11 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
+    "@rollup/plugin-babel": "^5.0.4",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "@rollup/plugin-typescript": "^5.0.1",
+    "@rollup/plugin-url": "^5.0.1",
     "@types/jest": "^26.0.0",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.23.0",
@@ -35,13 +40,9 @@
     "lint-staged": "^10.1.6",
     "prettier": "^2.0.1",
     "rimraf": "^3.0.2",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-typescript2": "^0.27.0",
-    "rollup-plugin-url": "^3.0.1",
+    "rollup": "^2.18.2",
+    "rollup-plugin-typescript2": "^0.27.1",
     "ts-jest": "^25.2.1",
-    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
   }
 }
