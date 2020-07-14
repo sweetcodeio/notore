@@ -7,10 +7,10 @@
     "test": "jest",
     "prebuild": "lerna exec --parallel -- rimraf dist typings",
     "build": "lerna exec --parallel -- rollup -c ../../rollup.config.js",
-    "lint": "eslint packages --ext js,ts",
-    "lint:fix": "eslint packages --ext js,ts --fix",
-    "prettier": "prettier --check packages/**/*.{js,ts}",
-    "prettier:fix": "prettier --write packages/**/*.{js,ts}"
+    "lint": "eslint ./ --ext js,ts",
+    "lint:fix": "eslint ./ --ext js,ts --fix",
+    "prettier": "prettier --check ./**/*.{js,ts}",
+    "prettier:fix": "prettier --write ./**/*.{js,ts}"
   },
   "workspaces": {
     "packages": [
