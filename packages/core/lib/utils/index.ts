@@ -1,4 +1,4 @@
-import { Errors } from './Constants';
+import { Errors } from './constants';
 
 import { ValidateField } from '../types';
 
