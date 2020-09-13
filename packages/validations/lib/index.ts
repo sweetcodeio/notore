@@ -31,4 +31,6 @@ class NotoreValidations {
   }
 }
 
-export default new NotoreValidations();
+export const validations = new NotoreValidations();
+
+export default validations;

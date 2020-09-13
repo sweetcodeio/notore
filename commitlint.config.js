@@ -4,7 +4,7 @@ module.exports = {
     'subject-empty': [2, 'never'],
     'subject-full-stop': [2, 'never', '.'],
     'subject-max-length': [2, 'always', 50],
-    'subject-case': [2, 'always'],
+    'subject-case': [2, 'always', 'lower-case'],
     'body-leading-blank': [2, 'always'],
     'body-max-line-length': [2, 'always', 72],
     'footer-leading-blank': [2, 'always'],

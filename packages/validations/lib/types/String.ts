@@ -1,18 +1,33 @@
-import { Validation, IValidField, TValidateOptions } from '@notore/core';
+import { Validation, ValidateResponse, ValidateOptions } from '@notore/core';
 
-import { REGEX } from '../utils/Constants';
+import { Regex } from '../utils/constants';
 
-class StringValidation extends Validation {
+class StringValidation extends Validation<string> {
   private _values?: string[];
 
   constructor() {
     super('string');
   }
 
+  public values(values: string[]): this {
+    this._values = values;
+    return this;
+  }
+
+  public email(): this {
+    this.reviews.push(Regex.Email);
+    return this;
+  }
+
+  public alphanumeric(force?: boolean): this {
+    this.reviews.push(Regex.AlphaNumeric(!!force));
+    return this;
+  }
+
   protected isValid(
     string: string,
-    { key }: TValidateOptions,
-  ): IValidField | void {
+    { key }: ValidateOptions,
+  ): ValidateResponse {
     if (typeof string !== 'string') {
       const error = 'string';
       return { error, complete: true };
@@ -44,21 +59,6 @@ class StringValidation extends Validation {
         return { error };
       }
     }
-  }
-
-  alphanumeric(force?: boolean): this {
-    this.reviews.push(REGEX.ALPHA_NUMERIC(!!force));
-    return this;
-  }
-
-  email(): this {
-    this.reviews.push(REGEX.EMAIL);
-    return this;
-  }
-
-  values(values: string[]): this {
-    this._values = values;
-    return this;
   }
 }
 

@@ -1,9 +1,15 @@
-import { TValidateOptions, IValidateTemplate, IValidField } from '../types';
-
-import { parseError } from '../utils';
+import { parseError, isNull } from '../utils';
 import Failure from './Failure';
 import Parse from './Parse';
 import Success from './Success';
+
+import {
+  ValidateField,
+  CreateResponse,
+  ValidateOptions,
+  ValidateResponse,
+  ValidateTemplate,
+} from '../types';
 
 interface IReviewItem {
   name: string;
@@ -11,7 +17,7 @@ interface IReviewItem {
   error: (t: string) => string;
 }
 
-abstract class NotoreValidation {
+abstract class NotoreValidation<T = any> {
   readonly name: string;
 
   protected required?: boolean;
@@ -19,56 +25,50 @@ abstract class NotoreValidation {
   protected reviews: IReviewItem[] = [];
 
   protected abstract isValid(
-    schema: any,
-    options: TValidateOptions,
-  ): IValidField | void;
+    schema: T,
+    options: ValidateOptions,
+  ): ValidateResponse;
 
   constructor(name: string) {
     this.name = name;
   }
 
-  validate(schema: any): IValidateTemplate<Failure, Success> {
-    const { fields, error } = this.handleValidation(schema);
-
-    return this.createResponse(
-      error ? new Failure(error, fields) : new Success(schema),
-    );
-  }
-
-  generateValidation<T = {}>(
-    value: any,
-    options?: TValidateOptions<T>,
-  ): IValidField {
-    return this.handleValidation(value, options);
-  }
-
-  isRequired(): this {
+  public isRequired(): this {
     this.required = true;
     return this;
   }
 
-  protected isNull(v: any): boolean {
-    return v === null || v === undefined;
+  public validate(schema: T): ValidateTemplate<Failure, Success> {
+    const { fields, error } = this.handleValidation(schema);
+
+    return this.createResponse({ error, fields, schema });
+  }
+
+  public generateValidation<V = any>(
+    value: T,
+    options?: ValidateOptions<V>,
+  ): ValidateField {
+    return this.handleValidation(value, options);
   }
 
   private handleValidation(
-    schema: any,
-    options?: TValidateOptions,
-  ): IValidField {
+    schema: T,
+    options?: ValidateOptions,
+  ): ValidateField {
     const { key } = options || {};
+    const nullable = isNull(schema);
+    const required = this.required && nullable;
 
-    const isNull = this.isNull(schema);
-    const required = this.required && isNull;
-
-    if (isNull && !this.required) return {};
-
+    if (nullable && !this.required) return {};
     if (required) {
       const displayName = key && `${key} (${this.name})`;
       const error = `"${displayName || this.name}" is required`;
+
       return { error };
     }
 
     const response = this.isValid(schema, options || {});
+
     if (response && response.error) {
       const { error, fields, ...rest } = response;
       const parsedFields = fields?.map(field => new Parse(field));
@@ -82,11 +82,13 @@ abstract class NotoreValidation {
     return { options };
   }
 
-  private createResponse(
-    response: Failure | Success,
-  ): IValidateTemplate<Failure, Success> {
-    if (response instanceof Failure) return { error: response };
-    return { value: response };
+  private createResponse({
+    error,
+    fields,
+    schema,
+  }: CreateResponse<T>): ValidateTemplate<Failure, Success> {
+    if (error) return { error: new Failure(error, fields) };
+    return { value: new Success(schema) };
   }
 }
 

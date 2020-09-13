@@ -1,3 +1,5 @@
-export const ERRORS = {
-  complete: (type: string) => `The validation entered is not an ${type}`,
+export const Errors = {
+  Complete: (type: string): string => {
+    return `The validation entered is not an ${type}`;
+  },
 };

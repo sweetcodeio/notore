@@ -1,7 +1,7 @@
-import { IValidField } from '../types';
+import { ValidateField } from '../types';
 
 class NotoreParsedField {
-  constructor(field: IValidField) {
+  constructor(field: ValidateField) {
     Object.assign(this, field);
   }
 }

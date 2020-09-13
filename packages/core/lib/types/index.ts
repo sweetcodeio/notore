@@ -1,20 +1,28 @@
-export interface IValidateTemplate<Failure, Success> {
+export interface ParsedFields {
+  error: string;
+}
+
+export interface ValidateTemplate<Failure, Success> {
   error?: Failure;
   value?: Success;
 }
 
-export type TValidateOptions<T = {}> = T & {
-  required?: boolean;
+export type ValidateOptions<T = any> = T & {
   key?: string;
+  required?: boolean;
 };
 
-export interface IValidField {
-  options?: TValidateOptions;
-  complete?: boolean;
+export interface ValidateField {
   error?: string;
-  fields?: IValidField[];
+  complete?: boolean;
+  fields?: ValidateField[];
+  options?: ValidateOptions;
 }
 
-export interface IParsedFields {
-  error: string;
+export interface CreateResponse<S = any> {
+  schema: S;
+  error: ValidateField['error'];
+  fields: ValidateField['fields'];
 }
+
+export type ValidateResponse = ValidateField | void;

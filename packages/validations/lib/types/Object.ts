@@ -1,36 +1,51 @@
-import { Validation, IValidField, TValidateOptions } from '@notore/core';
+import {
+  Validation,
+  ValidateField,
+  ValidateOptions,
+  ValidateResponse,
+} from '@notore/core';
 
-interface IViewValidationArgs {
+interface ViewValidationArgs {
   value: any;
 }
 
-interface IShapeBuild {
+interface ObjectType {
+  [key: string]: any;
+}
+
+interface ShapeBuild {
   [key: string]: Validation;
 }
 
-class ObjectValidation extends Validation {
-  private _shapeConfig?: { [key: string]: Validation };
+class ObjectValidation extends Validation<ObjectType> {
+  private _shapeConfig?: ShapeBuild;
 
   constructor() {
     super('object');
   }
 
+  public shape(shapeConfig: ShapeBuild): this {
+    this._shapeConfig = shapeConfig;
+    return this;
+  }
+
   protected isValid(
-    object: object,
-    { key }: TValidateOptions,
-  ): IValidField | void {
+    object: ObjectType,
+    { key }: ValidateOptions,
+  ): ValidateResponse {
     if (!(object instanceof Object)) {
       const error = 'object';
       return { error, complete: true };
     }
 
     const shape = this._shapeConfig;
+
     if (shape) {
       const fields = Object.entries(shape)
         .map(
-          ([objKey, validation]): IValidField => {
+          ([objKey, validation]): ValidateField => {
             const value = object[objKey];
-            return validation.generateValidation<IViewValidationArgs>(value, {
+            return validation.generateValidation<ViewValidationArgs>(value, {
               value,
               key: (key && `${key}.${objKey}`) || objKey,
             });
@@ -43,11 +58,6 @@ class ObjectValidation extends Validation {
         return { error, fields };
       }
     }
-  }
-
-  shape(shapeConfig: IShapeBuild): this {
-    this._shapeConfig = shapeConfig;
-    return this;
   }
 }
 

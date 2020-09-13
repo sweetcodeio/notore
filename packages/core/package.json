@@ -8,22 +8,21 @@
   "scripts": {
     "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "directory": "packages/core",
+    "url": "git+https://github.com/pablo1v/notore.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib"
+  },
   "files": [
     "dist",
     "typings"
   ],
-  "directories": {
-    "lib": "lib"
-  },
-  "author": "Pablo Vinícius <dev.pablo.vinicius@gmail.com>",
-  "homepage": "https://github.com/pablo1v/notore#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pablo1v/notore.git"
-  },
-  "bugs": {
-    "url": "https://github.com/pablo1v/notore/issues"
-  },
   "keywords": [
     "notore",
     "node",

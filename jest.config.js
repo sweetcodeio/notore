@@ -17,4 +17,9 @@ module.exports = {
   moduleNameMapper: {
     '@notore/(.*)': '<rootDir>/packages/$1/lib',
   },
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+    },
+  },
 };
