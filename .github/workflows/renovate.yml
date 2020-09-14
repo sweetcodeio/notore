@@ -18,5 +18,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ github.event.pull_request.number }}
           merge-method: squash
-          allowed-usernames-regex: ^renovate$
+          allowed-usernames-regex: ^Renovate$
           merge-title: 'chore: automatically merge dependencie update'
